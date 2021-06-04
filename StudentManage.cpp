@@ -108,7 +108,7 @@ void StudentManager::Add_Student()
 			switch (select)
 			{
 			case 1://大一
-				student = new Grade01(id, name,1, sex, m_class, m_age);
+				student = new Grade01(id, name, 1, sex, m_class, m_age);
 				break;
 			case 2://大2
 				student = new Grade02(id, name, 2, sex, m_class, m_age);
@@ -151,10 +151,10 @@ void StudentManager::Save()
 	{
 		ofs << this->Student_Array[i]->m_id << " "
 			<< this->Student_Array[i]->m_name << " "
-			<< this->Student_Array[i]->m_grade << " " 
-			<<this->Student_Array[i]->m_sex<<" "
-			<< this->Student_Array[i]->m_class<< " " 
-			<< this->Student_Array[i]->m_age<< " "  << endl;
+			<< this->Student_Array[i]->m_grade << " "
+			<< this->Student_Array[i]->m_sex << " "
+			<< this->Student_Array[i]->m_class << " "
+			<< this->Student_Array[i]->m_age << " " << endl;
 	}
 	ofs.close();
 }
@@ -188,12 +188,12 @@ void StudentManager::InitStudent()
 	string sex;
 	string m_class;
 	int m_age;
-	while (ifs >> id && ifs >> name && ifs >> grade&&ifs>> sex && ifs >>m_class && ifs >> m_age)
+	while (ifs >> id && ifs >> name && ifs >> grade && ifs >> sex && ifs >> m_class && ifs >> m_age)
 	{
 		PSTU student = NULL;//根据年级创建PSTU的对象
 		if (id == 1)
 		{
-			student = new Grade01(id,  name,  grade,  sex,  m_class,  m_age);
+			student = new Grade01(id, name, grade, sex, m_class, m_age);
 		}
 		else if (id == 2)
 		{
@@ -360,7 +360,7 @@ void StudentManager::ModStudent()
 				student = new Grade01(newid, newname, 1, newsex, newclass, newage);
 				break;
 			case 2://大2
-				student = new Grade02(newid, newname,2, newsex, newclass, newage);
+				student = new Grade02(newid, newname, 2, newsex, newclass, newage);
 				break;
 			case 3://大3
 				student = new Grade03(newid, newname, 3, newsex, newclass, newage);

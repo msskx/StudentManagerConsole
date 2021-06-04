@@ -11,7 +11,7 @@ public:
 	//记录人数
 	int Student_Num;
 	//学生数组的指针
-	PSTU   *Student_Array;//指针数组用来存Student* 的数组(Student*)* Student_Array;
+	PSTU* Student_Array;//指针数组用来存Student* 的数组(Student*)* Student_Array;
 	//构造函数
 	StudentManager();
 	//显示菜单
