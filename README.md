@@ -1,0 +1,2 @@
+# StudentManagerConsole
+大一课程设计项目，控制台实现简易学生学籍管理系统
