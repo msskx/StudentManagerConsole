@@ -33,7 +33,7 @@ StudentManager::StudentManager()//
 	int num = this->get_StudentNum();
 	//cout << "学生个数为：" << num << endl;
 	this->Student_Num = num;
-	//根据职工数创建数组
+	//根据学生数创建数组
 	this->Student_Array = new PSTU[this->Student_Num];
 	this->InitStudent();
 }//构造函数
@@ -269,7 +269,7 @@ void StudentManager::FindStudent()
 	else
 	{
 		cout << "请输入查找的方式：" << endl;
-		cout << "1、按职工编号查找" << endl;
+		cout << "1、按编号查找" << endl;
 		cout << "2、按姓名查找" << endl;
 
 		int select = 0;
