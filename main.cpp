@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
 	system("color B1");//美化控制台
-
+	system("mode con cols=50 lines=50");//改变宽高
 	StudentManager stu;
 	int chioce;
 	while (true)
@@ -37,10 +37,12 @@ int main()
 		case 8:stu.CleanStudent();//清空系统
 			break;
 		default://
+			cout << "输入错误，请重新输入！" << endl;
+			system("pause");
 			system("cls");
 			break;
 		}
-		system("pause");
+		//system("pause");
 
 	}
 

@@ -1,10 +1,6 @@
 #include"StudentManage.h"
-//#include"Grade01.h"
-//#include"Grade02.h"
-//#include"Grade03.h"
-//#include"Grade04.h"
 #include"Grade.h"
-StudentManager::StudentManager()//
+StudentManager::StudentManager()
 {
 	ifstream ifs;//创建流对象
 	ifs.open(FILENAME, ios::in);//为读文件打开文件
@@ -71,6 +67,12 @@ void StudentManager::Add_Student()
 		int newsize = this->Student_Num + addnum;
 		//开辟空间
 		PSTU* newspace = new PSTU[newsize];
+		if (NULL == newspace)
+		{
+			cout << "添加失败！！" << endl;
+			system("pause");
+			system("cls");
+		}
 		//将源空间的内容存放到新空间下
 		if (this->Student_Array != NULL)
 		{
@@ -89,7 +91,15 @@ void StudentManager::Add_Student()
 			string m_class;
 			int m_age;
 			cout << "请输入第" << i + 1 << "个学生学号" << endl;
-			cin >> id;
+			RE:cin >> id;
+			for (int i = 0; i < this->Student_Num; i++)
+			{
+				if (id == this->Student_Array[i]->m_id)
+				{
+					cout << "该学生已存在，请重新输入" << endl; \
+						goto RE;
+				}
+			}
 			cout << "请输入第" << i + 1 << "个学生姓名" << endl;
 			cin >> name;
 			cout << "请输入第" << i + 1 << "个学生年级编号" << endl;
@@ -161,7 +171,7 @@ void StudentManager::Save()
 int StudentManager::get_StudentNum()
 {
 	ifstream ifs;
-	ifs.open(FILENAME, ios::in);
+	ifs.open(FILENAME, ios::in);//读文件
 	int id;
 	string name;
 	int grade;
@@ -191,15 +201,15 @@ void StudentManager::InitStudent()
 	while (ifs >> id && ifs >> name && ifs >> grade && ifs >> sex && ifs >> m_class && ifs >> m_age)
 	{
 		PSTU student = NULL;//根据年级创建PSTU的对象
-		if (id == 1)
+		if (grade == 1)
 		{
 			student = new Grade01(id, name, grade, sex, m_class, m_age);
 		}
-		else if (id == 2)
+		else if (grade == 2)
 		{
 			student = new Grade02(id, name, grade, sex, m_class, m_age);
 		}
-		else if (id == 3)
+		else if (grade == 3)
 		{
 			student = new Grade03(id, name, grade, sex, m_class, m_age);
 		}
@@ -269,7 +279,7 @@ void StudentManager::FindStudent()
 	else
 	{
 		cout << "请输入查找的方式：" << endl;
-		cout << "1、按编号查找" << endl;
+		cout << "1、按学号查找" << endl;
 		cout << "2、按姓名查找" << endl;
 
 		int select = 0;
@@ -385,6 +395,8 @@ void StudentManager::ModStudent()
 		system("pause");
 		system("cls");
 	}
+	system("pause");
+	system("cls");
 }
 int StudentManager::IsExist(int id)
 {
@@ -483,39 +495,46 @@ void StudentManager::CleanStudent()
 }
 void StudentManager::ClassifyStudent()
 {
-	cout << "大一：" << endl;
-	for (int i = 0; i < this->Student_Num; i++)
+	if (this->FileIsEmpty)
 	{
-		if (this->Student_Array[i]->m_grade == 1)
-		{
-			this->Student_Array[i]->Show_Info();
-		}
+		cout << "文件不存在，或记录为空" << endl;
 	}
-	cout << endl;
-	cout << "大二：" << endl;
-	for (int i = 0; i < this->Student_Num; i++)
-	{
-		if (this->Student_Array[i]->m_grade == 2)
+	else {
+
+		cout << "大一：" << endl;
+		for (int i = 0; i < this->Student_Num; i++)
 		{
-			this->Student_Array[i]->Show_Info();
+			if (this->Student_Array[i]->m_grade == 1)
+			{
+				this->Student_Array[i]->Show_Info();
+			}
 		}
-	}
-	cout << endl;
-	cout << "大三：" << endl;
-	for (int i = 0; i < this->Student_Num; i++)
-	{
-		if (this->Student_Array[i]->m_grade == 3)
+		cout << endl;
+		cout << "大二：" << endl;
+		for (int i = 0; i < this->Student_Num; i++)
 		{
-			this->Student_Array[i]->Show_Info();
+			if (this->Student_Array[i]->m_grade == 2)
+			{
+				this->Student_Array[i]->Show_Info();
+			}
 		}
-	}
-	cout << endl;
-	cout << "大四：" << endl;
-	for (int i = 0; i < this->Student_Num; i++)
-	{
-		if (this->Student_Array[i]->m_grade == 4)
+		cout << endl;
+		cout << "大三：" << endl;
+		for (int i = 0; i < this->Student_Num; i++)
 		{
-			this->Student_Array[i]->Show_Info();
+			if (this->Student_Array[i]->m_grade == 3)
+			{
+				this->Student_Array[i]->Show_Info();
+			}
+		}
+		cout << endl;
+		cout << "大四：" << endl;
+		for (int i = 0; i < this->Student_Num; i++)
+		{
+			if (this->Student_Array[i]->m_grade == 4)
+			{
+				this->Student_Array[i]->Show_Info();
+			}
 		}
 	}
 	system("pause");
